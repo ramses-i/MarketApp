@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/contentMain"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="7dp"
+    app:cardElevation="5dp"
+    app:cardUseCompatPadding="true">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:padding="10dp">
+
+        <LinearLayout
+            android:id="@+id/postActionButtons"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+
+            <ImageView
+                android:id="@+id/vrImg"
+                android:layout_width="125dp"
+                android:layout_height="150dp"
+                android:background="@color/white"
+                android:contentDescription="Product image"
+                android:scaleType="centerCrop"
+                app:srcCompat="@drawable/ic_launcher_foreground" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="15dp"
+                android:background="@color/white">
+
+                <TextView
+                    android:id="@+id/prTit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="25dp"
+                    android:fontFamily="@font/roboto_regular"
+                    android:text="Product title"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+
+
+                <TextView
+                    android:id="@+id/prPrice"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/prTit"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:text="$"
+                    android:textColor="@color/black"
+                    android:textSize="24sp" />
+
+                <TextView
+                    android:id="@+id/prNum"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/prPrice"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/roboto_regular"
+                    android:text="ID"
+                    android:textColor="@color/black"
+                    android:textSize="10sp" />
+
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+
+</androidx.cardview.widget.CardView>

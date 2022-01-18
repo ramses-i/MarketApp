@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.detail.DetailFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!--
+         <SearchView
+             android:id="@+id/dtSearchField"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:layout_centerHorizontal="true"
+             android:layout_marginHorizontal="16dp"
+             android:layout_marginTop="20dp"
+             android:layout_marginBottom="16dp"
+             android:background="@drawable/searchview_background"
+             android:iconifiedByDefault="false"
+             android:queryBackground="@android:color/transparent"
+             android:queryHint="Search product" />
+        -->
+
+        <!-- android:layout_below="@+id/dtSearchField" -->
+        <TextView
+            android:id="@+id/dtPrTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/roboto_regular"
+            android:text="Product title"
+            android:textColor="@color/black"
+            android:textSize="25sp" />
+
+        <com.denzcoskun.imageslider.ImageSlider
+            android:id="@+id/dtPrImgSld"
+            android:layout_width="wrap_content"
+            android:layout_height="400dp"
+            android:layout_below="@+id/dtPrTitle"
+            android:layout_marginHorizontal="16dp"
+            app:iss_auto_cycle="true"
+            app:iss_delay="100"
+            app:iss_period="1000" />
+
+        <TextView
+            android:id="@+id/dtPrDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/dtPrImgSld"
+            android:layout_centerHorizontal="true"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/roboto_regular"
+            android:text="Product description"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/dtPrPrice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/dtPrDescription"
+            android:layout_centerHorizontal="true"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="Product price"
+            android:textColor="@color/black"
+            android:textSize="30sp" />
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/dtPrPrice"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:visibility="invisible" />
+
+
+        <TextView
+            android:id="@+id/dtRecViewed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/progress_bar"
+            android:layout_centerHorizontal="true"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="Recently viewed"
+            android:textColor="@color/black"
+            android:textSize="25sp" />
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvRecentlyViewed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/dtRecViewed"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="50dp"
+            tools:listitem="@layout/horizontal_card" />
+
+    </RelativeLayout>
+
+</ScrollView>
