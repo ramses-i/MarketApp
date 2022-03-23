@@ -10,22 +10,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <!--
-         <SearchView
-             android:id="@+id/dtSearchField"
-             android:layout_width="match_parent"
-             android:layout_height="wrap_content"
-             android:layout_centerHorizontal="true"
-             android:layout_marginHorizontal="16dp"
-             android:layout_marginTop="20dp"
-             android:layout_marginBottom="16dp"
-             android:background="@drawable/searchview_background"
-             android:iconifiedByDefault="false"
-             android:queryBackground="@android:color/transparent"
-             android:queryHint="Search product" />
-        -->
-
-        <!-- android:layout_below="@+id/dtSearchField" -->
         <TextView
             android:id="@+id/dtPrTitle"
             android:layout_width="match_parent"
@@ -34,7 +18,7 @@
             android:layout_marginHorizontal="16dp"
             android:layout_marginTop="15dp"
             android:fontFamily="@font/roboto_regular"
-            android:text="Product title"
+            android:text="@string/card_text_holder"
             android:textColor="@color/black"
             android:textSize="25sp" />
 
@@ -57,7 +41,7 @@
             android:layout_marginHorizontal="16dp"
             android:layout_marginTop="20dp"
             android:fontFamily="@font/roboto_regular"
-            android:text="Product description"
+            android:text="@string/card_text_holder"
             android:textColor="@color/black"
             android:textSize="20sp" />
 
@@ -70,7 +54,7 @@
             android:layout_marginHorizontal="16dp"
             android:layout_marginTop="20dp"
             android:fontFamily="@font/montserrat_bold"
-            android:text="Product price"
+            android:text="@string/card_text_holder"
             android:textColor="@color/black"
             android:textSize="30sp" />
 
@@ -92,7 +76,7 @@
             android:layout_marginHorizontal="16dp"
             android:layout_marginTop="20dp"
             android:fontFamily="@font/montserrat_bold"
-            android:text="Recently viewed"
+            android:text="@string/card_text_holder"
             android:textColor="@color/black"
             android:textSize="25sp" />
 

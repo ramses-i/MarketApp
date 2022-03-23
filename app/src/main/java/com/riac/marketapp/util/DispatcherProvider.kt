@@ -1,4 +1,4 @@
-package com.riac.marketapp.common
+package com.riac.marketapp.util
 
 
 import kotlinx.coroutines.CoroutineDispatcher

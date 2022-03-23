@@ -1,4 +1,4 @@
-package com.riac.marketapp.common
+package com.riac.marketapp.util
 
 sealed class Resource<T>(val data: T? = null, val message: String? = null) {
     class Loading<T> : Resource<T>()

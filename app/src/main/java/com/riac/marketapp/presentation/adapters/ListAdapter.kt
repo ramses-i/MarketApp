@@ -10,8 +10,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.riac.marketapp.R
 import com.riac.marketapp.domain.model.Item
+import com.riac.marketapp.util.Constants
 
-class ListAdapter(val type: String) : RecyclerView.Adapter<ListAdapter.ItemViewHolder>() {
+class ListAdapter(private val type: String) : RecyclerView.Adapter<ListAdapter.ItemViewHolder>() {
 
     inner class ItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
@@ -28,7 +29,7 @@ class ListAdapter(val type: String) : RecyclerView.Adapter<ListAdapter.ItemViewH
     val differ = AsyncListDiffer(this, differCallback)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
-        if (type == "Horizontal") {
+        if (type == Constants.ORIENTATION_HORIZONTAL) {
             return ItemViewHolder(
                 LayoutInflater.from(parent.context).inflate(
                     R.layout.horizontal_card,
@@ -55,27 +56,28 @@ class ListAdapter(val type: String) : RecyclerView.Adapter<ListAdapter.ItemViewH
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         val entry = differ.currentList[position]
-        if (type == "Horizontal") {
+        if (type == Constants.ORIENTATION_HORIZONTAL) {
             holder.itemView.apply {
+                val text =
+                    this.context.getString(R.string.price_tag, entry.price, entry.currency_id)
                 Glide.with(this)
                     .load(entry.thumbnail)
                     .centerCrop()
                     .into(this.findViewById(R.id.hrImg))
                 this.findViewById<TextView>(R.id.prTit).text = entry.title.split(",")[0]
-                this.findViewById<TextView>(R.id.prPrice).text =
-                    "${entry.price} ${entry.currency_id}"
+                this.findViewById<TextView>(R.id.prPrice).text = text
             }
         } else {
             holder.itemView.apply {
-
+                val text =
+                    this.context.getString(R.string.price_tag, entry.price, entry.currency_id)
                 Glide.with(this)
                     .load(entry.thumbnail)
                     .centerCrop()
                     .into(this.findViewById(R.id.vrImg))
 
                 this.findViewById<TextView>(R.id.prTit).text = entry.title.split(",")[0]
-                this.findViewById<TextView>(R.id.prPrice).text =
-                    "${entry.price} ${entry.currency_id}"
+                this.findViewById<TextView>(R.id.prPrice).text = text
                 this.findViewById<TextView>(R.id.prNum).text = entry.id
 
 

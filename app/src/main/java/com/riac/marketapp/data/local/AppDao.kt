@@ -1,7 +1,6 @@
 package com.riac.marketapp.data.local
 
 import androidx.room.Dao
-import androidx.room.Entity
 import androidx.room.Insert
 import androidx.room.Query
 import com.riac.marketapp.data.local.entities.ItemEnt

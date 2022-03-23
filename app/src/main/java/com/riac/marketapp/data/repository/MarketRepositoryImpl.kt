@@ -1,6 +1,6 @@
 package com.riac.marketapp.data.repository
 
-import com.riac.marketapp.common.Resource
+import com.riac.marketapp.util.Resource
 import com.riac.marketapp.data.local.AppDao
 import com.riac.marketapp.data.remote.MarketAPI
 import com.riac.marketapp.data.remote.dto.item.toItemDetail

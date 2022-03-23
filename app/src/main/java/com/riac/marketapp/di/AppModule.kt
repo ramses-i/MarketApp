@@ -1,8 +1,8 @@
 package com.riac.marketapp.di
 
 import android.app.Application
-import com.riac.marketapp.common.Constants.Companion.BASE_URL
-import com.riac.marketapp.common.DispatcherProvider
+import com.riac.marketapp.util.Constants.Companion.BASE_URL
+import com.riac.marketapp.util.DispatcherProvider
 import com.riac.marketapp.data.local.AppDao
 import com.riac.marketapp.data.local.AppDatabase
 import com.riac.marketapp.data.remote.MarketAPI

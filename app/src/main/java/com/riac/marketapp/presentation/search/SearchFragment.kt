@@ -7,29 +7,29 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
-import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.riac.marketapp.R
-import com.riac.marketapp.common.Resource
+import com.riac.marketapp.util.Resource
 import com.riac.marketapp.databinding.FragmentSearchBinding
 import com.riac.marketapp.presentation.MainViewModel
 import com.riac.marketapp.presentation.adapters.ListAdapter
+import com.riac.marketapp.util.Constants
+import com.riac.marketapp.util.showToast
 
 class SearchFragment : Fragment() {
 
-    private var _binding: FragmentSearchBinding? = null
+    private lateinit var binding: FragmentSearchBinding
     private lateinit var mainViewModel: MainViewModel
     private lateinit var rvAdapter: ListAdapter
-
-    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentSearchBinding.inflate(inflater, container, false)
+        binding = FragmentSearchBinding.inflate(inflater, container, false)
         mainViewModel = ViewModelProvider(requireActivity())[MainViewModel::class.java]
         return binding.root
 
@@ -38,6 +38,11 @@ class SearchFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerView()
+        setupSearchView()
+        setupRecyclerViewActions()
+    }
+
+    private fun setupSearchView() {
         binding.searchField.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(p0: String?): Boolean {
                 handleSearch(p0.toString())
@@ -49,7 +54,6 @@ class SearchFragment : Fragment() {
             }
 
         })
-        setupRecyclerViewActions()
     }
 
     private fun setupRecyclerViewActions() {
@@ -61,55 +65,47 @@ class SearchFragment : Fragment() {
         }
     }
 
-
     private fun handleSearch(query: String) {
         mainViewModel.makeSearch(query)
         loadData()
     }
 
     private fun loadData() {
-        mainViewModel.searchQuery.observe(viewLifecycleOwner, { response ->
+        mainViewModel.searchQuery.observe(viewLifecycleOwner) { response ->
             when (response) {
                 is Resource.Loading -> {
-                    showProgressBar()
+                    manageProgressBar()
                 }
                 is Resource.Error -> {
-                    hideProgressBar()
+                    manageProgressBar(false)
                     response.message?.let { message ->
-                        Log.e(
-                            tag,
-                            "An Error occurred in method loadData() at $tag : $message"
-                        )
+                        Log.e(tag, "An Error occurred in method loadData() at $tag : $message")
                     }
                 }
                 is Resource.Success -> {
-                    hideProgressBar()
+                    manageProgressBar(false)
                     response.data?.let {
                         if (it.results.isNullOrEmpty()) {
-                            showToast("We could not find results related to: ${binding.searchField.query}")
+                            requireContext().showToast("We could not find results related to: ${binding.searchField.query}")
                         } else {
                             rvAdapter.differ.submitList(it.results)
                         }
                     }
                 }
             }
-        })
+        }
     }
 
     private fun setupRecyclerView() {
-        rvAdapter = ListAdapter("Vertical")
+        rvAdapter = ListAdapter(Constants.ORIENTATION_VERTICAL)
         binding.rvSearch.apply {
             adapter = rvAdapter
             layoutManager = LinearLayoutManager(activity)
         }
     }
 
-    private fun showProgressBar() {
-        binding.progressBar.visibility = View.VISIBLE
-    }
-
-    private fun hideProgressBar() {
-        binding.progressBar.visibility = View.INVISIBLE
+    private fun manageProgressBar(isVisible: Boolean = true) {
+        binding.progressBar.isVisible = isVisible
     }
 
     override fun onResume() {
@@ -117,7 +113,4 @@ class SearchFragment : Fragment() {
         loadData()
     }
 
-    private fun showToast(message: String) {
-        Toast.makeText(context, message, Toast.LENGTH_LONG).show()
-    }
 }
